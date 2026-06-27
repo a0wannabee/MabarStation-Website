@@ -1,0 +1,2060 @@
+/* =========================
+   1. VARIABLES
+========================= */
+:root {
+    --dark-bg: #050505;
+    --panel-bg: rgba(18, 18, 18, 0.88);
+    --input-bg: rgba(0, 0, 0, 0.72);
+
+    --text-color: #ffffff;
+    --muted-text: rgba(255, 255, 255, 0.64);
+    --glass-border: rgba(255, 255, 255, 0.16);
+
+    --accent-blue: #38bdf8;
+    --accent-violet: #a78bfa;
+    --accent-green: #34d399;
+    --accent-red: #fb7185;
+
+    --soft-blue: rgba(56, 189, 248, 0.14);
+    --soft-violet: rgba(167, 139, 250, 0.14);
+    --soft-white: rgba(255, 255, 255, 0.82);
+}
+
+/* =========================
+   2. BASE
+========================= */
+body {
+    background:
+        radial-gradient(circle at 18% 12%, rgba(56,189,248,0.08), transparent 26%),
+        radial-gradient(circle at 82% 18%, rgba(167,139,250,0.08), transparent 26%),
+        radial-gradient(circle at 12% 88%, rgba(217,70,239,0.07), transparent 24%),
+        #050505;
+    color: var(--text-color);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+}
+
+.section-title,
+.text-glow-cyan,
+.text-glow-white {
+    color: #ffffff !important;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 14px rgba(255,255,255,0.16);
+}
+
+
+
+.font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.glass-panel {
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)),
+        rgba(14,14,14,0.88);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 24px;
+    padding: 25px;
+    position: relative;
+    box-shadow: none !important;
+    transition: border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+    transform: none !important;
+}
+
+.glass-panel:not(.home-feature-card):not(.booking-panel):hover {
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.065), rgba(255,255,255,0.018)),
+        rgba(18,18,18,0.92);
+    border-color: rgba(255,255,255,0.24);
+    box-shadow: 0 0 24px rgba(255,255,255,0.055) !important;
+    transform: none !important;
+}
+
+.glass-panel:not(.recommendation-card) {
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.035), rgba(255,255,255,0.010)),
+        rgba(13,13,13,0.88);
+    border: 1px solid rgba(255,255,255,0.14);
+}
+
+.glass-panel:not(.recommendation-card):not(.home-feature-card):not(.booking-panel):hover {
+    border-color: rgba(255,255,255,0.24);
+    box-shadow: 0 0 18px rgba(255,255,255,0.045) !important;
+    transform: none !important;
+}
+
+.glass-panel .bi-playstation {
+    color: var(--accent-blue);
+}
+
+.recommendation-card .bi-playstation {
+    color: var(--accent-violet);
+}
+
+.hr-white,
+.hr-card-white {
+    border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.hr-card-white {
+    width: 50%;
+    margin: 10px auto;
+}
+
+/* Ambient Shapes */
+.ambient-shape {
+    position: fixed;
+    font-size: 350px;
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(90px);
+    opacity: 0.38;
+    font-family: Arial, sans-serif;
+    line-height: 1;
+    animation: ambientFloat 9s ease-in-out infinite alternate;
+}
+
+.ambient-cross {
+    --ambient-rotate: 15deg;
+    color: #38bdf8;
+    top: -50px;
+    left: -50px;
+    animation-delay: 0s;
+}
+
+.ambient-circle {
+    --ambient-rotate: 0deg;
+    color: #ef4444;
+    top: -50px;
+    right: -50px;
+    animation-delay: 1.5s;
+}
+
+.ambient-square {
+    --ambient-rotate: -15deg;
+    color: #d946ef;
+    bottom: -50px;
+    left: -50px;
+    animation-delay: 3s;
+}
+
+.ambient-triangle {
+    --ambient-rotate: 25deg;
+    color: #10b981;
+    bottom: -50px;
+    right: -50px;
+    animation-delay: 4.5s;
+}
+
+@keyframes ambientFloat {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1) rotate(var(--ambient-rotate, 0deg));
+        opacity: 0.28;
+    }
+
+    100% {
+        transform: translate3d(18px, -18px, 0) scale(1.06) rotate(var(--ambient-rotate, 0deg));
+        opacity: 0.42;
+    }
+}
+
+.hero-desc {
+    max-width: 550px;
+}
+
+.list-lg {
+    font-size: 1.1rem;
+}
+
+.spinner-md {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.icon-lg {
+    font-size: 2rem;
+}
+
+.footer-border {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* =========================
+   3. NAVBAR
+========================= */
+.navbar-custom {
+    background: rgba(5, 5, 5, 0.72);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.nav-link:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.28);
+}
+
+.auth-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-auth-btn {
+    min-width: 98px;
+    height: 40px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: #ffffff;
+    border: 1.5px solid rgba(255, 255, 255, 0.72);
+    border-radius: 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: none;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.nav-auth-primary {
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.nav-auth-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff !important;
+    border-color: #ffffff;
+}
+
+.nav-auth-primary:hover {
+    background: #ffffff;
+    color: #000000 !important;
+    border-color: #ffffff;
+}
+
+/* User Dropdown */
+.user-dropdown-toggle {
+    color: var(--text-color) !important;
+    text-decoration: none;
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    padding: 6px 12px;
+    background: var(--panel-bg);
+    transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.user-dropdown-toggle:hover {
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.user-dropdown-menu {
+    background: var(--panel-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+}
+
+.user-dropdown-menu .dropdown-item {
+    color: var(--text-color) !important;
+    font-family: 'Rajdhani', sans-serif !important;
+    font-weight: 500 !important;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.user-dropdown-menu .dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+}
+
+/* =========================
+   4. BUTTON
+========================= */
+.btn-cyber {
+    background:
+        linear-gradient(135deg, rgba(56,189,248,0.14), rgba(167,139,250,0.12));
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.26);
+    border-radius: 12px;
+    padding: 12px 30px;
+    display: inline-block;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 0 18px rgba(56,189,248,0.08);
+    transform: none !important;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-cyber:hover {
+    background:
+        linear-gradient(135deg, rgba(56,189,248,0.24), rgba(167,139,250,0.22));
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.48);
+    box-shadow: 0 0 24px rgba(167,139,250,0.14);
+    transform: none !important;
+}
+
+/* Full Width Submit Button */
+.auth-form-submit {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: 46px !important;
+    padding: 0 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 10px !important;
+    font-size: 0.95rem !important;
+}
+
+.btn-booking-submit {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 0 !important;
+}
+
+/* =========================
+   5. FORM
+========================= */
+.form-label {
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.78);
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.glass-input,
+.form-control,
+.form-select {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    color: rgba(255, 255, 255, 0.92) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 16px !important;
+    outline: none !important;
+    box-shadow: none !important;
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-input::placeholder,
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.42) !important;
+}
+
+.glass-input:hover,
+.form-control:hover,
+.form-select:hover {
+    background: rgba(255, 255, 255, 0.07) !important;
+    border-color: rgba(255, 255, 255, 0.24) !important;
+}
+
+.glass-input:focus,
+.form-control:focus,
+.form-select:focus {
+    color: rgba(255, 255, 255, 0.95) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(167, 139, 250, 0.55) !important;
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.08) !important;
+}
+
+textarea.glass-input,
+textarea.form-control {
+    min-height: 120px !important;
+    resize: vertical !important;
+}
+
+/* Chrome autofill fix */
+input.glass-input:-webkit-autofill,
+input.glass-input:-webkit-autofill:hover,
+input.glass-input:-webkit-autofill:focus,
+input.form-control:-webkit-autofill,
+input.form-control:-webkit-autofill:hover,
+input.form-control:-webkit-autofill:focus,
+textarea.glass-input:-webkit-autofill,
+textarea.form-control:-webkit-autofill,
+select.glass-input:-webkit-autofill,
+select.form-select:-webkit-autofill {
+    -webkit-text-fill-color: #ffffff !important;
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.72) inset !important;
+    transition: background-color 9999s ease-in-out 0s !important;
+}
+
+/* Upload file button */
+input[type="file"].form-control,
+input[type="file"].glass-input {
+    width: 100% !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    padding: 7px 10px !important;
+    color: rgba(255, 255, 255, 0.72) !important;
+    background: rgba(255, 255, 255, 0.045) !important;
+    border: 1px solid rgba(167, 139, 250, 0.55) !important;
+    border-radius: 22px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    line-height: 36px !important;
+    box-shadow: none !important;
+}
+
+input[type="file"].form-control:hover,
+input[type="file"].glass-input:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: rgba(167, 139, 250, 0.68) !important;
+}
+
+input[type="file"].form-control:focus,
+input[type="file"].glass-input:focus {
+    background: rgba(255, 255, 255, 0.065) !important;
+    border-color: rgba(167, 139, 250, 0.75) !important;
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.08) !important;
+}
+
+input[type="file"].form-control::file-selector-button,
+input[type="file"].glass-input::file-selector-button {
+    height: 36px !important;
+    margin: 0 !important;
+    margin-right: 16px !important;
+    padding: 0 16px !important;
+    color: #18181b !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+    border: 1px solid rgba(255, 255, 255, 0.96) !important;
+    border-radius: 13px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 36px !important;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+input[type="file"].form-control::file-selector-button:hover,
+input[type="file"].glass-input::file-selector-button:hover {
+    background: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+/* Date & time icon */
+input[type="date"].glass-input::-webkit-calendar-picker-indicator,
+input[type="time"].glass-input::-webkit-calendar-picker-indicator,
+input[type="date"].form-control::-webkit-calendar-picker-indicator,
+input[type="time"].form-control::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+/* Option select styles */
+.form-select.glass-input option,
+.form-select option {
+    background-color: #121212 !important;
+    color: #ffffff !important;
+}
+
+/* =========================
+   6. HOME RECOMMENDATION
+========================= */
+.recommendation-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.22) !important;
+    background:
+        radial-gradient(circle at 86% 10%, rgba(167,139,250,0.18), transparent 34%),
+        radial-gradient(circle at 12% 88%, rgba(56,189,248,0.10), transparent 36%),
+        linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.018)),
+        rgba(16,16,16,0.94) !important;
+    box-shadow:
+        0 0 34px rgba(167,139,250,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.10) !important;
+    transform: none !important;
+}
+
+.recommendation-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1.5px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet), rgba(255,255,255,0.35));
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.recommendation-card:not(.home-feature-card):hover {
+    transform: none !important;
+    box-shadow:
+        0 0 42px rgba(56,189,248,0.10),
+        0 0 42px rgba(167,139,250,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.13) !important;
+}
+
+.recommendation-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.recommendation-heading h2,
+.recommendation-heading h4 {
+    margin-bottom: 4px;
+}
+
+.recommendation-heading .recommendation-badge {
+    flex-shrink: 0;
+    margin-bottom: 0;
+}
+
+.recommendation-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    white-space: nowrap;
+
+    padding: 7px 13px;
+    border-radius: 999px;
+
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet));
+    color: #ffffff;
+
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+
+    box-shadow: 0 0 18px rgba(56,189,248,0.18);
+}
+
+@media (max-width: 576px) {
+    .recommendation-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .recommendation-badge {
+        font-size: 0.62rem;
+        padding: 6px 11px;
+    }
+}
+
+.panel-highlight {
+    border-color: rgba(255, 255, 255, 0.38) !important;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.025)),
+        rgba(18, 18, 18, 0.88) !important;
+}
+
+/* Content within glass panels */
+.glass-panel ul li {
+    color: rgba(255,255,255,0.68);
+    border-bottom-color: rgba(255,255,255,0.14) !important;
+}
+
+.glass-panel h2,
+.glass-panel h3,
+.glass-panel h4 {
+    text-shadow: 0 0 10px rgba(255,255,255,0.18);
+}
+
+.glass-panel p {
+    color: rgba(255,255,255,0.62);
+}
+
+/* =========================
+   7. BOOKING CARDS
+========================= */
+.bw-booking-section {
+    margin-bottom: 36px;
+}
+
+.bw-booking-header {
+    margin-bottom: 18px;
+}
+
+.bw-booking-header span {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    color: rgba(255, 255, 255, 0.48);
+}
+
+.bw-booking-header h3 {
+    margin: 0 0 6px;
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.25rem;
+}
+
+.bw-booking-header p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.58);
+}
+
+.bw-booking-grid {
+    display: grid;
+    gap: 18px;
+}
+
+.bw-console-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.bw-room-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.bw-choice-card,
+.booking-choice-card,
+.booking-option-card,
+.console-option,
+.room-option,
+.choice-card {
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 28px !important;
+    min-height: 220px;
+    padding: 22px;
+    color: #ffffff;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28) !important;
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    transform: none !important;
+}
+
+.bw-choice-card:hover,
+.booking-choice-card:hover,
+.booking-option-card:hover,
+.console-option:hover,
+.room-option:hover,
+.choice-card:hover {
+    transform: none !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: rgba(255, 255, 255, 0.24) !important;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.04), 0 18px 40px rgba(0, 0, 0, 0.32) !important;
+}
+
+/* Disable top line indicator on choice cards */
+.bw-choice-card::before,
+.bw-choice-card.selected::before,
+.booking-choice-card::before,
+.booking-choice-card.selected::before,
+.booking-choice-card.active::before,
+.booking-option-card::before,
+.booking-option-card.selected::before,
+.console-option::before,
+.console-option.selected::before,
+.room-option::before,
+.room-option.selected::before,
+.choice-card::before,
+.choice-card.selected::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* Selected state for booking choice cards - Unified Soft Violet theme */
+.bw-choice-card.selected,
+.booking-choice-card.selected,
+.booking-option-card.selected,
+.console-option.selected,
+.room-option.selected,
+.choice-card.selected {
+    transform: none !important;
+    background: rgba(167, 139, 250, 0.08) !important;
+    border-color: rgba(167, 139, 250, 0.55) !important;
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.08), 0 18px 40px rgba(0, 0, 0, 0.34) !important;
+    color: #ffffff !important;
+}
+
+/* Safeguard hover scale override for choice cards */
+.bw-choice-card:hover,
+.bw-choice-card.selected,
+.booking-choice-card:hover,
+.booking-choice-card.selected,
+.booking-option-card:hover,
+.booking-option-card.selected,
+.console-option:hover,
+.console-option.selected,
+.room-option:hover,
+.room-option.selected,
+.choice-card:hover,
+.choice-card.selected {
+    transform: none !important;
+}
+
+.bw-choice-card.selected *,
+.booking-choice-card.selected *,
+.booking-option-card.selected * {
+    color: inherit;
+}
+
+.bw-choice-card.selected .bw-choice-title,
+.bw-choice-card.selected .bw-choice-price,
+.booking-choice-card.selected .choice-main h4,
+.booking-option-card.selected h4 {
+    color: #ffffff !important;
+}
+
+.bw-choice-card.selected .bw-choice-desc,
+.bw-choice-card.selected .bw-choice-slot,
+.booking-choice-card.selected .choice-main p,
+.booking-option-card.selected p,
+.booking-option-card.selected span {
+    color: rgba(255,255,255,0.76) !important;
+}
+
+.bw-choice-card:disabled,
+.bw-choice-card.is-disabled {
+    opacity: 0.34;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.bw-choice-card:disabled:hover,
+.bw-choice-card.is-disabled:hover {
+    border-color: rgba(255, 255, 255, 0.14);
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.045), rgba(255,255,255,0.01)),
+        rgba(14,14,14,0.90);
+    transform: none !important;
+}
+
+.bw-choice-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.bw-choice-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.46);
+}
+
+.bw-choice-card[data-choice="playstation"].selected .bw-choice-label,
+.booking-choice-card[data-choice="playstation"].selected .bw-choice-label {
+    color: var(--accent-violet);
+}
+
+.bw-choice-card[data-choice="room"].selected .bw-choice-label,
+.booking-choice-card[data-choice="room"].selected .bw-choice-label {
+    color: var(--accent-violet);
+}
+
+.bw-choice-status,
+.availability-pill {
+    padding: 6px 11px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.14);
+    color: rgba(255,255,255,0.76);
+}
+
+.bw-choice-status.available,
+.availability-pill.available,
+.bw-choice-status.is-available {
+    color: var(--accent-green);
+    border-color: rgba(52,211,153,0.28);
+    background: rgba(52,211,153,0.08);
+}
+
+.bw-choice-status.unavailable,
+.availability-pill.unavailable,
+.bw-choice-status.is-unavailable {
+    color: var(--accent-red);
+    border-color: rgba(251,113,133,0.35);
+    background: rgba(251,113,133,0.08);
+}
+
+.bw-choice-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.bw-choice-code,
+.choice-code,
+.option-icon {
+    flex: 0 0 58px;
+    width: 58px;
+    height: 58px;
+    border-radius: 19px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 900;
+}
+
+.bw-choice-card.selected .bw-choice-code,
+.booking-choice-card.selected .choice-code,
+.booking-option-card.selected .option-icon {
+    background: rgba(255,255,255,0.10);
+    border-color: rgba(167, 139, 250, 0.45);
+    color: #ffffff !important;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+}
+
+.bw-choice-card[data-choice="room"].selected .bw-choice-code {
+    border-color: rgba(167, 139, 250, 0.45);
+}
+
+.bw-choice-title {
+    margin: 0 0 8px;
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.08rem;
+}
+
+.bw-choice-desc {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.60);
+    font-size: 0.95rem;
+    line-height: 1.38;
+}
+
+.bw-choice-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: auto;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.bw-choice-price,
+.bw-choice-slot {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+/* Hide indicators */
+.bw-choice-check,
+.choice-check,
+.selected-indicator {
+    display: none !important;
+}
+
+.bw-slot-meter,
+.slot-meter {
+    width: 100%;
+    height: 7px;
+    margin: 0 0 16px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.10);
+}
+
+.bw-slot-meter-fill,
+.slot-meter-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: rgba(255,255,255,0.88);
+}
+
+.bw-choice-card[data-choice="room"].selected .bw-slot-meter-fill {
+    background: linear-gradient(90deg, var(--accent-violet), var(--accent-blue));
+}
+
+/* =========================
+   8. CATALOG CARDS
+========================= */
+.steam-card {
+    background-color: transparent;
+    width: 100%;
+    height: 400px;
+    perspective: 1000px;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.steam-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.steam-card.is-flipped .steam-card-inner {
+    transform: rotateY(180deg);
+}
+
+.steam-card-front,
+.steam-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden;
+    background: var(--panel-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: none !important;
+    transition: 0.3s ease;
+}
+
+.steam-card:hover {
+    transform: none;
+}
+
+.steam-card:hover .steam-card-front,
+.steam-card:hover .steam-card-back {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.steam-card-front::after,
+.steam-card-back::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(255, 255, 255, 0.13) 50%,
+        transparent 100%
+    );
+    transform: skewX(-25deg);
+    transition: left 0.7s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.steam-card:hover .steam-card-front::after,
+.steam-card:hover .steam-card-back::after {
+    left: 200%;
+}
+
+.steam-card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9);
+}
+
+.steam-card-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 15px 15px;
+    margin: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.95),
+        rgba(0, 0, 0, 0.6),
+        transparent
+    );
+    color: #fff;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.steam-card-back {
+    transform: rotateY(180deg);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--panel-bg);
+}
+
+.search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.catalog-search-form {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--panel-bg);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 16px;
+    padding: 8px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.catalog-search-box {
+    flex: 1;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    background: var(--input-bg);
+    border: none;
+    border-radius: 10px;
+    padding: 0 14px;
+}
+
+.catalog-search-box i {
+    color: #ffffff;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.catalog-search-input {
+    width: 100%;
+    height: 100%;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: #fff !important;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    padding: 0 !important;
+}
+
+.catalog-search-input:focus {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.catalog-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.42) !important;
+}
+
+.catalog-search-button {
+    height: 42px;
+    min-width: 105px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.catalog-search-button:hover {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+.catalog-search-form:focus-within {
+    border-color: rgba(56,189,248,0.45);
+    box-shadow: 0 0 24px rgba(56,189,248,0.08);
+}
+
+.pagination .page-link {
+    background-color: var(--panel-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-color);
+    font-family: 'Rajdhani', sans-serif;
+    border-radius: 12px;
+    margin: 0 3px;
+    box-shadow: none !important;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.pagination .page-item.active .page-link {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet));
+    border-color: transparent;
+    color: #ffffff;
+}
+
+.pagination .page-link:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.58);
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: var(--panel-bg);
+    border-color: var(--glass-border);
+    color: rgba(255, 255, 255, 0.25);
+}
+
+/* =========================
+   9. PROFILE & REVIEWS
+========================= */
+.profile-card {
+    max-width: 430px;
+    margin: 0 auto;
+}
+
+.profile-avatar {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--glass-border);
+}
+
+.profile-info-text {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.reviews-slider-wrapper {
+    margin: 0 auto;
+    max-width: 1140px;
+    overflow: visible;
+    padding: 0 10px;
+}
+
+.reviews-slider-track-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.reviews-slider-track {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    gap: 24px;
+}
+
+.reviews-slider-card {
+    box-sizing: border-box;
+    flex: 0 0 calc(33.333% - 16px);
+}
+
+.review-card {
+    border-color: var(--glass-border);
+    transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.review-card:hover {
+    transform: none !important;
+    border-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: #ffffff !important;
+    opacity: 0.35;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    border: none;
+    margin: 0 6px;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-indicators .active {
+    opacity: 1;
+    box-shadow: 0 0 8px #ffffff;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+}
+
+/* =========================
+   10. RESPONSIVE
+========================= */
+@media (max-width: 991px) {
+    .auth-actions {
+        margin-top: 12px;
+        justify-content: flex-start;
+    }
+
+    .nav-auth-btn {
+        min-width: 88px;
+        height: 36px;
+        font-size: 0.72rem;
+    }
+
+    .bw-console-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bw-room-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reviews-slider-card {
+        flex: 0 0 calc(50% - 12px);
+    }
+}
+
+@media (max-width: 576px) {
+    .catalog-search-form {
+        max-width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .catalog-search-button {
+        width: 100%;
+    }
+
+    .steam-card {
+        height: 360px;
+    }
+
+    .bw-console-grid,
+    .bw-room-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bw-choice-card {
+        min-height: auto;
+    }
+
+    .bw-choice-meta {
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .reviews-slider-card {
+        flex: 0 0 100%;
+    }
+}
+
+/* =========================
+   11. HOVER EFFECTS & CARD ELEVATION OVERRIDES
+========================= */
+.btn-cyber,
+.nav-auth-btn,
+.catalog-search-button {
+    transition:
+        background 0.22s ease,
+        color 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease,
+        transform 0.22s ease;
+}
+
+.btn-cyber:hover,
+.nav-auth-btn:hover,
+.catalog-search-button:hover {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet)) !important;
+    color: #ffffff !important;
+    border-color: rgba(255,255,255,0.52) !important;
+    box-shadow: 0 0 22px rgba(56,189,248,0.18) !important;
+}
+
+.glass-panel,
+.steam-card,
+.recommendation-card {
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.glass-panel:not(.home-feature-card):hover,
+.steam-card:hover,
+.recommendation-card:not(.home-feature-card):hover {
+    transform: translateY(-4px) !important;
+}
+
+/* Exclude booking-related cards and forms from rising */
+.booking-form-panel,
+.booking-form-panel:hover,
+.booking-panel,
+.booking-panel:hover,
+.bw-choice-card,
+.bw-choice-card:hover,
+.booking-choice-card,
+.booking-choice-card:hover,
+.booking-option-card,
+.booking-option-card:hover {
+    transform: none !important;
+}
+
+/* Custom Alert Styles for Dark Premium Glass Theme */
+.custom-alert {
+    background: rgba(14, 14, 14, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    font-family: 'Rajdhani', sans-serif !important;
+    font-weight: 600;
+    color: #ffffff !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05) !important;
+    border-radius: 12px;
+}
+
+.alert-danger.custom-alert {
+    border-color: rgba(239, 68, 68, 0.4) !important;
+    color: #ef4444 !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.15) !important;
+}
+
+.alert-success.custom-alert {
+    border-color: rgba(34, 197, 94, 0.4) !important;
+    color: #22c55e !important;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.15) !important;
+}
+
+/* =========================
+   12. PROFILE TAB / DROPDOWN
+========================= */
+.profile-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+    padding: 6px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.profile-tab-btn {
+    flex: 1;
+    border: 0;
+    border-radius: 12px;
+    padding: 10px 14px;
+    background: transparent;
+    color: rgba(255,255,255,0.65);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.82rem;
+    transition: 0.22s ease;
+}
+
+.profile-tab-btn.active,
+.profile-tab-btn:hover {
+    background: linear-gradient(135deg, rgba(56,189,248,0.18), rgba(167,139,250,0.16));
+    color: #ffffff;
+}
+
+.profile-tab-content {
+    display: none;
+}
+
+.profile-tab-content.active {
+    display: block;
+}
+
+.profile-booking-card {
+    border: 1px solid rgba(255,255,255,0.14);
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)),
+        rgba(13,13,13,0.88);
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 14px;
+    text-align: left;
+}
+
+.profile-booking-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.booking-status {
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.booking-status.confirmed {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.10);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.booking-status.completed {
+    color: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* ==================================================
+   Shared Card Design System & Section Headers Revisions
+   ================================================== */
+:root {
+    --neon-cyan: #38bdf8;
+}
+
+/* 1. Shared Normal Card styles */
+.ui-feature-card,
+.console-card,
+.room-showcase-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012)),
+        rgba(13,13,13,0.94);
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.025);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0 !important;
+}
+
+
+
+/* 2. Shared Featured/Recommended Card styles */
+.featured-card,
+.console-recommended-card,
+.vip-room-card {
+    position: relative;
+    border-color: rgba(120,180,255,0.62) !important;
+    background:
+        radial-gradient(circle at top right, rgba(167,139,250,0.16), transparent 38%),
+        radial-gradient(circle at bottom left, rgba(56,189,248,0.12), transparent 42%),
+        linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.012)),
+        rgba(14,14,14,0.94) !important;
+    box-shadow:
+        0 0 0 1px rgba(120,180,255,0.12),
+        0 0 28px rgba(56,189,248,0.10),
+        inset 0 0 0 1px rgba(255,255,255,0.03) !important;
+}
+
+.featured-card::before,
+.console-recommended-card::before,
+.vip-room-card::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    border-radius: inherit !important;
+    padding: 1px !important;
+    background: linear-gradient(
+        135deg,
+        rgba(56,189,248,0.95),
+        rgba(167,139,250,0.82),
+        rgba(255,255,255,0.22)
+    ) !important;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0) !important;
+    -webkit-mask-composite: xor !important;
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0) !important;
+    mask-composite: exclude !important;
+    pointer-events: none !important;
+    z-index: 3 !important;
+}
+
+.featured-card > *,
+.console-recommended-card > *,
+.vip-room-card > * {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* 3. Image wraps, dimensions, and filter overlays */
+.card-image-area,
+.console-card-hero,
+.room-card-image-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 !important;
+    background-color: rgba(255,255,255,0.04);
+}
+
+.console-card-hero {
+    min-height: 220px;
+    padding: 28px;
+    background-size: cover;
+    background-position: center;
+}
+
+.room-card-image-wrap {
+    width: 100%;
+    height: 260px;
+}
+
+.card-image,
+.room-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.84) contrast(1.05) saturate(1.04);
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+
+
+.console-card-overlay,
+.room-card-image-wrap::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background:
+        linear-gradient(to bottom, rgba(0,0,0,0.12), rgba(0,0,0,0.78)),
+        radial-gradient(circle at top right, rgba(56,189,248,0.16), transparent 42%),
+        radial-gradient(circle at bottom left, rgba(167,139,250,0.12), transparent 45%) !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+
+/* 4. Console details overlays */
+.console-card-head,
+.console-card-price {
+    position: relative;
+    z-index: 2;
+}
+
+.console-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.console-card-title {
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 0 0 14px rgba(255,255,255,0.20);
+}
+
+.console-card-title i {
+    color: var(--neon-cyan);
+}
+
+.console-card-subtitle {
+    margin-top: 8px;
+    color: rgba(255,255,255,0.68);
+    font-weight: 600;
+}
+
+.console-card-price {
+    margin: 0;
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-shadow: 0 0 18px rgba(255,255,255,0.18);
+}
+
+.console-card-price span {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+}
+
+.console-card-body {
+    padding: 24px 28px 28px;
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.035), rgba(255,255,255,0.008)),
+        rgba(10,10,10,0.92);
+    flex: 1;
+}
+
+.console-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.console-feature-list li {
+    color: rgba(255,255,255,0.72);
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    font-size: 1rem;
+}
+
+.console-feature-list li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.console-recommended-card .console-card-hero {
+    min-height: 230px;
+}
+
+/* 5. Room details styles */
+.room-card-content {
+    padding: 28px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: 0 !important;
+    background: transparent !important;
+}
+
+.room-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 48px;
+}
+
+.room-card-header-regular {
+    justify-content: flex-start;
+}
+
+.room-card-header-vip {
+    justify-content: space-between;
+}
+
+.room-card-title {
+    margin: 0;
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.room-card-separator {
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+}
+
+.room-card-description {
+    margin: 0;
+    color: rgba(255,255,255,0.68);
+    line-height: 1.7;
+    font-size: 0.96rem;
+}
+
+.room-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.room-feature-list li {
+    color: rgba(255,255,255,0.74);
+    line-height: 1.55;
+    position: relative;
+    padding-left: 18px;
+}
+
+.room-feature-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent-blue);
+    font-weight: 800;
+}
+
+.vip-room-card .room-feature-list li::before {
+    color: var(--accent-violet);
+}
+
+.vip-room-card .room-card-header {
+    align-items: center;
+}
+
+.vip-room-card .room-card-badge {
+    margin-left: auto;
+}
+
+.regular-room-card {
+    border: 1px solid rgba(255,255,255,0.14) !important;
+}
+
+/* 6. Badges */
+.recommendation-badge,
+.room-card-badge,
+.featured-badge {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--neon-cyan), #a78bfa);
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+    line-height: 1;
+    box-shadow:
+        0 0 16px rgba(56,189,248,0.18),
+        inset 0 0 0 1px rgba(255,255,255,0.18) !important;
+}
+
+/* 7. Section Heading & Subtitles */
+.section-heading {
+    margin-bottom: 34px;
+}
+
+.section-title {
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.6px;
+    text-shadow: 0 0 18px rgba(255,255,255,0.16);
+}
+
+.section-subtitle {
+    max-width: 620px;
+    margin: 0 auto;
+    color: rgba(255,255,255,0.58);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.section-heading::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Home Section spacing */
+.home-section {
+    margin-bottom: 72px;
+}
+
+@media (max-width: 768px) {
+    .home-section {
+        margin-bottom: 56px;
+    }
+}
+
+
+
+/* 9. Responsive layout properties */
+@media (max-width: 992px) {
+    .console-card-hero {
+        min-height: 210px;
+        padding: 24px;
+    }
+
+    .console-card-title {
+        font-size: 1.75rem;
+    }
+
+    .console-card-price {
+        font-size: 1.55rem;
+    }
+
+    .room-card-image-wrap {
+        height: 230px;
+    }
+
+    .room-card-content {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 576px) {
+    .console-card-hero {
+        min-height: 190px;
+        padding: 22px;
+    }
+
+    .console-card-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .recommendation-badge,
+    .room-card-badge,
+    .featured-badge {
+        font-size: 0.62rem;
+        padding: 7px 12px;
+    }
+
+    .console-card-body {
+        padding: 22px;
+    }
+
+    .room-card-image-wrap {
+        height: 190px;
+    }
+
+    .room-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .room-card-badge {
+        align-self: flex-start;
+        margin-left: 0 !important;
+    }
+
+    .room-card-content {
+        padding: 20px;
+    }
+
+    .section-title {
+        font-size: 1.55rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
+        max-width: 92%;
+    }
+}
+
+/* ==================================================
+   UNIFIED HOME FEATURE CARD HOVER SYSTEM
+   ================================================== */
+
+/* 1. Base card style (transition and properties) */
+.home-feature-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+    will-change: transform;
+}
+
+/* 2. Featured card style */
+.featured-card,
+.console-recommended-card,
+.vip-room-card {
+    position: relative;
+    border-color: rgba(120,180,255,0.62) !important;
+    background:
+        radial-gradient(circle at top right, rgba(167,139,250,0.16), transparent 38%),
+        radial-gradient(circle at bottom left, rgba(56,189,248,0.12), transparent 42%),
+        linear-gradient(145deg, rgba(255,255,255,0.055), rgba(255,255,255,0.012)),
+        rgba(14,14,14,0.94) !important;
+}
+
+/* 3. Hover unified .home-feature-card:hover */
+.home-feature-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(255,255,255,0.30) !important;
+    box-shadow:
+        0 14px 34px rgba(0,0,0,0.34),
+        0 0 28px rgba(255,255,255,0.05),
+        inset 0 0 0 1px rgba(255,255,255,0.04) !important;
+}
+
+/* 4. Featured hover */
+.featured-card:hover,
+.console-recommended-card:hover,
+.vip-room-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(120,180,255,0.72) !important;
+    box-shadow:
+        0 14px 38px rgba(0,0,0,0.36),
+        0 0 32px rgba(56,189,248,0.11),
+        0 0 44px rgba(167,139,250,0.08),
+        inset 0 0 0 1px rgba(255,255,255,0.05) !important;
+}
+
+/* 5. Image hover */
+.room-card-image {
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+.home-feature-card:hover .room-card-image {
+    transform: scale(1.025) !important;
+    filter: brightness(0.92) contrast(1.08) saturate(1.08) !important;
+}
+
+.console-card-hero {
+    position: relative;
+    overflow: hidden;
+    background-size: 0 0 !important; /* Hide parent background to prevent double rendering */
+}
+
+.console-card-hero::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background-image: inherit !important;
+    background-size: cover !important;
+    background-position: center !important;
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease !important;
+    z-index: 0 !important;
+}
+
+.home-feature-card:hover .console-card-hero::before {
+    transform: scale(1.025) !important;
+    filter: brightness(0.92) contrast(1.08) saturate(1.08) !important;
+}
+
+/* 6. Badge hover */
+.recommendation-badge,
+.room-card-badge,
+.featured-badge {
+    transition:
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+.home-feature-card:hover .recommendation-badge,
+.home-feature-card:hover .room-card-badge,
+.home-feature-card:hover .featured-badge {
+    filter: brightness(1.06) !important;
+    box-shadow:
+        0 0 18px rgba(56,189,248,0.22),
+        inset 0 0 0 1px rgba(255,255,255,0.20) !important;
+}
+
+/* 7. Booking hover override paling bawah */
+.booking-panel,
+.booking-panel:hover,
+.booking-choice-card,
+.booking-choice-card:hover,
+.bw-choice-card,
+.bw-choice-card:hover,
+.booking-option-card,
+.booking-option-card:hover {
+    transform: none !important;
+}
+
+.booking-panel img,
+.booking-choice-card img,
+.bw-choice-card img,
+.booking-option-card img {
+    transform: none !important;
+}
+
+/* 8. Booking status badges */
+.booking-status.confirmed {
+    color: #38bdf8 !important;
+    background: rgba(56,189,248,0.10) !important;
+    border: 1px solid rgba(56,189,248,0.25) !important;
+}
+
+.booking-status.completed {
+    color: rgba(255,255,255,0.82) !important;
+    background: rgba(255,255,255,0.08) !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+}
+
+/* Clear top line decorative indicators on booking/choice cards */
+.booking-choice-card::before,
+.booking-choice-card::after,
+.booking-choice-card.selected::before,
+.booking-choice-card.selected::after,
+.booking-choice-card.active::before,
+.booking-choice-card.active::after,
+.bw-choice-card::before,
+.bw-choice-card::after,
+.bw-choice-card.selected::before,
+.bw-choice-card.selected::after,
+.bw-choice-card.active::before,
+.bw-choice-card.active::after,
+.console-option::before,
+.console-option::after,
+.console-option.selected::before,
+.console-option.selected::after,
+.room-option::before,
+.room-option::after,
+.room-option.selected::before,
+.room-option.selected::after,
+.choice-card::before,
+.choice-card::after,
+.choice-card.selected::before,
+.choice-card.selected::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
