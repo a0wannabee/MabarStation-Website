@@ -5,6 +5,9 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+
+// nambah koemntar coba pull and push
+
 // Parameter router global.
 $page = $_GET['page'] ?? 'home';
 
